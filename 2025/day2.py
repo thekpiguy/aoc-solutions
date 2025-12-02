@@ -1,7 +1,17 @@
 import click
 from aocd import get_data
+from functools import reduce
 
 TEST_DATA = """"""
+
+
+def factors(n):
+    """
+    Reference: https://stackoverflow.com/questions/6800193/what-is-the-most-efficient-way-of-finding-all-the-factors-of-a-number-in-python
+    """
+    return set(reduce(
+        list.__add__,
+        ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
 
 
 def part1():
@@ -14,13 +24,16 @@ def part2():
 
 @click.command()
 @click.option("--test", "-t", is_flag=True)
-def dayN():
+def day2():
     start_tm = time()
+
+    for i in [4, 6, 8, 10, 20]:
+        print(f"N={i}, F={factors(i)}")
 
     if test:
         raw_data = TEST_DATA
     else:
-        raw_data = get_data(day=1, year=2025)
+        raw_data = get_data(day=2, year=2025)
 
     print("=" * 75)
     print("Part 1")
@@ -50,4 +63,4 @@ def dayN():
     print(f"Total time = {total_dur:,.0f} seconds")
 
 if __name__ == "__main__":
-    dayN()
+    day2()
