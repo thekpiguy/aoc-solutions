@@ -1,5 +1,6 @@
 import click
 import re
+
 from aocd import get_data
 from time import time
 

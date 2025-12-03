@@ -1,5 +1,7 @@
 import click
+
 from aocd import get_data
+from time import time
 
 TEST_DATA = """"""
 
@@ -14,7 +16,7 @@ def part2():
 
 @click.command()
 @click.option("--test", "-t", is_flag=True)
-def dayN():
+def dayN(test):
     start_tm = time()
 
     if test:
